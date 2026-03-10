@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warm Spirit | Home</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- 引入 Gitalk 样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+    <style>
+        :root {
+            --warm-bg: #FDFBF7;
+            --warm-surface: #F5EFE6;
+            --warm-primary: #D97757;
+            --warm-secondary: #E8A87C;
+            --text-dark: #2C3E50;
+            --text-light: #5D6D7E;
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(217, 119, 87, 0.1);
+            --radius-sm: 8px;
+            --radius-lg: 16px;
+            --font-ui: 'Inter', sans-serif;
+            --font-serif: 'Merriweather', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--warm-bg);
+            color: var(--text-dark);
+            font-family: var(--font-ui);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; border-radius: var(--radius-sm); }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--warm-primary);
+        }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            position: relative;
+            padding: 0.3rem 0;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--warm-primary); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--warm-primary);
+            transition: width 0.3s;
+        }
+        .nav-links a.active::after,
+        .nav-links a:hover::after { width: 100%; }
+
+        /* 所有 section 默认显示（不再需要隐藏） */
+        section {
+            padding: 6rem 5% 4rem;
+            min-height: 100vh;
+            display: block;
+        }
+
+        h1, h2, h3 { color: var(--text-dark); margin-bottom: 1rem; }
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--warm-primary);
+        }
+
+        /* Home 专属样式 */
+        #home {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* 改为从顶部开始，方便留言板自然排列 */            
+            #justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at top right, #fceadd 0%, transparent 40%);
+        }
+        
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--warm-primary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(217, 119, 87, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn:hover { 
+            transform: translateY(-2px); 
+            background: #c25e3d;
+            box-shadow: 0 6px 20px rgba(217, 119, 87, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--warm-primary);
+            color: var(--warm-primary);
+            margin-left: 1rem;
+        }
+        .btn-outline:hover {
+            background: rgba(217, 119, 87, 0.1);
+        }
+
+        /* 留言板容器样式 */
+        .comments-section {
+            width: 100%;
+            max-width: 800px;
+            margin: 4rem auto 0;
+            text-align: left;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+        .comments-section h2 {
+            font-family: var(--font-serif);
+            color: var(--warm-primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--warm-secondary);
+            padding-bottom: 0.5rem;
+        }
+        /* 留言板容器样式 */
+
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        .footer-links a { color: rgba(255,255,255,0.6); margin: 0 1rem; font-size: 0.9rem; }
+        .footer-links a:hover { color: var(--white); }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--warm-primary);
+            width: 0%;
+            z-index: 999;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links { 
+                display: flex; 
+                gap: 1rem;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            .nav-links a { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <nav>
+        <div class="logo">Warm Spirit</div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="journal.html">Dev Journal</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy</a>
+        </div>
+    </nav>
+
+    <!-- 主页内容 -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>Digital tools for<br>human moments.</h1>
+            <p class="hero-subtitle">
+                Hello, I'm a developer crafting apps that help you capture and cherish life's meaningful experiences.
+            </p>
+            <div>
+                <a href="projects.html" class="btn">View My Creations</a>
+            </div>
+        </div>
+
+        <!-- 留言板 -->
+        <div class="comments-section">
+            <h2>Leave a Thought 💬</h2>
+            <!-- Gitalk 容器 -->
+            <div id="gitalk-container"></div>
+            <!-- 提示：留言需要 GitHub 账号登录 -->
+            <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem; text-align: center;">
+                ⚡ 留言将出现在本仓库的 Issues 中，需要 GitHub 账号登录。
+            </p>
+        </div>
+        <!-- 留言板 -->
+
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Warm Spirit Digital Studio.</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.7;">Made with warmth and care.</p>
+        <div class="footer-links" style="margin-top: 1.5rem;">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="mailto:hello@warmspirit.com">Email Me</a>
+        </div>
+    </footer>
+
+    <script>
+        // 动态年份
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 滚动进度条
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+
+        // 留言板
+        // 初始化 Gitalk
+        const gitalk = new Gitalk({
+            clientID: '你的ClientID',           // 从 GitHub OAuth 应用获取
+            clientSecret: '你的ClientSecret',   // 从 GitHub OAuth 应用获取
+            repo: '你的仓库名',                  // 存放 Issues 的仓库，例如 username.github.io
+            owner: '你的GitHub用户名',
+            admin: ['你的GitHub用户名'],
+            id: location.pathname,              // 用当前页面路径作为唯一标识，确保每个页面留言独立
+            distractionFreeMode: false,
+            language: 'zh-CN'                   // 界面语言设为中文
+        });
+        gitalk.render('gitalk-container');
+        // 留言板
+
+    </script>
+</body>
+</html>

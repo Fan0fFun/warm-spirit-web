@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warm Spirit | Contact</title>
+    
+    <!-- 字体、图标、基础样式（与主页保持一致） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Gitalk 样式（仅用于 Gitalk 留言板） -->
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+    <style>
+        /* ---------- 全局样式（从原总.html复制，保持统一） ---------- */
+        :root {
+            --warm-bg: #FDFBF7;
+            --warm-surface: #F5EFE6;
+            --warm-primary: #D97757;
+            --warm-secondary: #E8A87C;
+            --text-dark: #2C3E50;
+            --text-light: #5D6D7E;
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(217, 119, 87, 0.1);
+            --radius-sm: 8px;
+            --radius-lg: 16px;
+            --font-ui: 'Inter', sans-serif;
+            --font-serif: 'Merriweather', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--warm-bg);
+            color: var(--text-dark);
+            font-family: var(--font-ui);
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .logo {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--warm-primary);
+        }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            position: relative;
+            padding: 0.3rem 0;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--warm-primary); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--warm-primary);
+            transition: width 0.3s;
+        }
+        .nav-links a.active::after,
+        .nav-links a:hover::after { width: 100%; }
+
+        section {
+            padding: 6rem 5% 4rem;
+            min-height: 100vh;
+        }
+        h1, h2, h3 { color: var(--text-dark); margin-bottom: 1rem; }
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--warm-primary);
+        }
+
+        /* ---------- 两种留言板的公共容器 ---------- */
+        .comments-section {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+        .comments-section h2 {
+            font-family: var(--font-serif);
+            color: var(--warm-primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--warm-secondary);
+            padding-bottom: 0.5rem;
+        }
+
+        /* 邮件表单样式 */
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .email-form input,
+        .email-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-ui);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .email-form input:focus,
+        .email-form textarea:focus {
+            outline: none;
+            border-color: var(--warm-primary);
+            box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.1);
+        }
+        .email-form textarea { height: 150px; resize: none; }
+
+        .btn {
+            display: inline-block;
+            background: var(--warm-primary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+        .btn:hover { 
+            transform: translateY(-2px); 
+            background: #c25e3d;
+        }
+
+        /* 备用邮箱链接 */
+        .email-link {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-light);
+        }
+        .email-link a {
+            color: var(--warm-primary);
+            text-decoration: underline;
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        .footer-links a { color: rgba(255,255,255,0.6); margin: 0 1rem; font-size: 0.9rem; }
+        .footer-links a:hover { color: var(--white); }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--warm-primary);
+            width: 0%;
+            z-index: 999;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { gap: 1rem; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 进度条 -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- 导航栏（注意链接指向独立页面） -->
+    <nav>
+        <div class="logo">Warm Spirit</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="journal.html">Dev Journal</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="active">Contact</a>
+            <a href="privacy.html">Privacy</a>
+        </div>
+    </nav>
+
+    <section id="contact">
+        <h2 class="section-title">Get in Touch</h2>
+
+        <!-- ===== 第一种方式：Gitalk 留言板（需要 GitHub 登录） ===== -->
+        <div class="comments-section">
+            <h2>💬 Public Discussion (GitHub)</h2>
+            <div id="gitalk-container"></div>
+            <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem; text-align: center;">
+                ⚡ 需要 GitHub 账号登录。留言会出现在本仓库的 Issues 中。
+            </p>
+        </div>
+
+        <!-- ===== 第二种方式：免登录邮件留言板 ===== -->
+        <div class="comments-section">
+            <h2>📧 Send me a private message</h2>
+            <form class="email-form" action="https://formspree.io/f/你的Formspree表单ID" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email (so I can reply)" required>
+                <textarea name="message" placeholder="Your message..." required></textarea>
+                <button class="btn" type="submit">Send Message</button>
+            </form>
+            <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem;">
+                ⚡ 无需登录，提交后我会收到邮件。表单由 Formspree 安全处理。
+            </p>
+        </div>
+
+        <!-- 备用邮箱（直接点击发邮件） -->
+        <div class="email-link">
+            <p>Or email directly: <a href="mailto:hello@warmspirit.com">hello@warmspirit.com</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Warm Spirit Digital Studio.</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="mailto:hello@warmspirit.com">Email Me</a>
+        </div>
+    </footer>
+
+    <!-- 脚本区域 -->
+    <script>
+        // 动态年份
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 滚动进度条
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+    </script>
+
+    <!-- Gitalk 脚本（需要配置） -->
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        const gitalk = new Gitalk({
+            clientID: '你的GitHub OAuth ClientID',      // 替换为你的
+            clientSecret: '你的GitHub OAuth ClientSecret', // 替换为你的
+            repo: '你的仓库名',                            // 例如 username.github.io
+            owner: '你的GitHub用户名',
+            admin: ['你的GitHub用户名'],
+            id: location.pathname,                       // 每个页面独立留言
+            distractionFreeMode: false,
+            language: 'zh-CN'
+        });
+        gitalk.render('gitalk-container');
+    </script>
+
+    <!-- 注意：邮件表单无需额外脚本，Formspree 会自动处理跳转 -->
+</body>
+</html>
