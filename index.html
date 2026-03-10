@@ -238,19 +238,6 @@
                 <a href="projects.html" class="btn">View My Creations</a>
             </div>
         </div>
-
-        <!-- 留言板 -->
-        <div class="comments-section">
-            <h2>Leave a Thought 💬</h2>
-            <!-- Gitalk 容器 -->
-            <div id="gitalk-container"></div>
-            <!-- 提示：留言需要 GitHub 账号登录 -->
-            <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem; text-align: center;">
-                ⚡ 留言将出现在本仓库的 Issues 中，需要 GitHub 账号登录。
-            </p>
-        </div>
-        <!-- 留言板 -->
-
     </section>
 
     <footer>
@@ -274,21 +261,6 @@
             const scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
         });
-
-        // 留言板
-        // 初始化 Gitalk
-        const gitalk = new Gitalk({
-            clientID: '你的ClientID',           // 从 GitHub OAuth 应用获取
-            clientSecret: '你的ClientSecret',   // 从 GitHub OAuth 应用获取
-            repo: '你的仓库名',                  // 存放 Issues 的仓库，例如 username.github.io
-            owner: '你的GitHub用户名',
-            admin: ['你的GitHub用户名'],
-            id: location.pathname,              // 用当前页面路径作为唯一标识，确保每个页面留言独立
-            distractionFreeMode: false,
-            language: 'zh-CN'                   // 界面语言设为中文
-        });
-        gitalk.render('gitalk-container');
-        // 留言板
 
     </script>
 </body>

@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Gitalk 样式（仅用于 Gitalk 留言板） -->
+    <!-- Gitalk 样式 -->
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 
     <style>
@@ -88,26 +88,19 @@
         .section-title {
             font-family: var(--font-serif);
             font-size: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem; /* 减小间距 */
             text-align: center;
             color: var(--warm-primary);
         }
 
-        /* ---------- 两种留言板的公共容器 ---------- */
+        /* 留言板容器（仅用于 Gitalk 和邮件表单） */
         .comments-section {
             max-width: 800px;
-            margin: 2rem auto;
+            margin: 0 auto 2rem auto;
             background: var(--white);
             border-radius: var(--radius-lg);
             padding: 2rem;
             box-shadow: var(--shadow);
-        }
-        .comments-section h2 {
-            font-family: var(--font-serif);
-            color: var(--warm-primary);
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--warm-secondary);
-            padding-bottom: 0.5rem;
         }
 
         /* 邮件表单样式 */
@@ -207,16 +200,43 @@
     <section id="contact">
         <h2 class="section-title">Get in Touch</h2>
 
-        <!-- ===== 第一种方式：Gitalk 留言板（需要 GitHub 登录） ===== -->
-        <div class="comments-section">
-            <h2>💬 Public Discussion (GitHub)</h2>
-            <div id="gitalk-container"></div>
-            <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem; text-align: center;">
-                ⚡ 需要 GitHub 账号登录。留言会出现在本仓库的 Issues 中。
-            </p>
+        <!-- ===== 隐私说明区域（无白色背景框） ===== -->
+        <div style="max-width: 800px; margin: 0 auto 3rem auto;">
+            <!-- 标题 -->
+            <h2 style="font-family: var(--font-serif); color: var(--warm-primary); margin-bottom: 1.5rem; border-bottom: 2px solid var(--warm-secondary); padding-bottom: 0.5rem;">
+                🔒 Your privacy matters to me, and so does feedback!
+            </h2>
+
+            <!-- 彩色框：核心语句 -->
+            <div class="privacy-note" style="background: var(--warm-surface); padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 2rem; border-left: 4px solid var(--warm-primary);">
+                <p style="margin-bottom: 0; color: var(--text-light);">
+                    <strong>I don't collect any of your personal data</strong> — by design. That means I have no way to contact you or receive feedback automatically. But I truly want to hear from you to make Warm Spirit better!
+                </p>
+            </div>
+
+            <!-- 彩色框外的详细说明（无背景色） -->
+            <div style="color: var(--text-light);">
+                <p style="margin-bottom: 1rem;">
+                    Since this is a static website (hosted on GitHub Pages), I can't provide a built-in anonymous comment system. Instead, I offer two simple ways for you to share your thoughts:
+                </p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; list-style-type: disc;">
+                    <li><strong>Public discussion (requires GitHub login):</strong> If you have a GitHub account, feel free to log in and leave a comment in the box below. Your comment will appear as an Issue in my public repository.</li>
+                    <li><strong>Private message (no login required):</strong> Use the form further down on this page to send your feedback directly to my email inbox. No data is stored on my servers.</li>
+                </ul>
+                <p>
+                    Your feedback means the world to me — thank you for helping shape Warm Spirit!
+                </p>
+            </div>
         </div>
 
-        <!-- ===== 第二种方式：免登录邮件留言板 ===== -->
+        <!-- ===== 第一个留言框：Gitalk（白色背景） ===== -->
+        <div class="comments-section">
+            <div id="gitalk-container"></div>
+            <!-- 如果需要额外的提示，可以取消注释下面这行 -->
+            <!-- <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem; text-align: center;">⚡ GitHub login required. Comments appear as Issues in this repository.</p> -->
+        </div>
+
+        <!-- ===== 第二种方式：免登录邮件留言板（白色背景） ===== -->
         <div class="comments-section">
             <h2>📧 Send me a private message</h2>
             <form class="email-form" action="https://formspree.io/f/你的Formspree表单ID" method="POST">
@@ -226,7 +246,7 @@
                 <button class="btn" type="submit">Send Message</button>
             </form>
             <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem;">
-                ⚡ 无需登录，提交后我会收到邮件。表单由 Formspree 安全处理。
+                ⚡ No login required. Your message will be sent directly to my email inbox (via Formspree).
             </p>
         </div>
 
@@ -262,18 +282,18 @@
     <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
     <script>
         const gitalk = new Gitalk({
-            clientID: '你的GitHub OAuth ClientID',      // 替换为你的
-            clientSecret: '你的GitHub OAuth ClientSecret', // 替换为你的
-            repo: '你的仓库名',                            // 例如 username.github.io
-            owner: '你的GitHub用户名',
-            admin: ['你的GitHub用户名'],
+            clientID: 'Ov23lisEfHnmArhFeRH0',           // 替换为你的 Client ID
+            clientSecret: '7c88775e91849c99fc5d32584675122c3e49202f', // 替换为你的 Client Secret
+            repo: 'warm-spirit-web',                    // 仓库名，例如 warm-spirit-web
+            owner: 'Fan0fFun',                           // GitHub 用户名
+            admin: ['Fan0fFun'],                          // 管理员用户名
             id: location.pathname,                       // 每个页面独立留言
             distractionFreeMode: false,
-            language: 'zh-CN'
+            language: 'en'
         });
         gitalk.render('gitalk-container');
     </script>
 
-    <!-- 注意：邮件表单无需额外脚本，Formspree 会自动处理跳转 -->
+    <!-- 邮件表单无需额外脚本，Formspree 自动处理 -->
 </body>
 </html>
