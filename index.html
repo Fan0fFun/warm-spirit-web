@@ -7,11 +7,8 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- 引入 Gitalk 样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 
     <style>
         :root {
@@ -22,11 +19,6 @@
             --text-dark: #2C3E50;
             --text-light: #5D6D7E;
             --white: #FFFFFF;
-            --shadow: 0 4px 20px rgba(217, 119, 87, 0.1);
-            --radius-sm: 8px;
-            --radius-lg: 16px;
-            --font-ui: 'Inter', sans-serif;
-            --font-serif: 'Merriweather', serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,234 +26,192 @@
         body {
             background-color: var(--warm-bg);
             color: var(--text-dark);
-            font-family: var(--font-ui);
+            font-family: 'Work Sans', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-        img { max-width: 100%; display: block; border-radius: var(--radius-sm); }
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
 
         nav {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 5%;
-            background: rgba(253, 251, 247, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            align-items: flex-end;
+            padding: 2rem 0 1rem;
+            border-bottom: 1px solid var(--text-dark);
+            margin-bottom: 4rem;
         }
 
         .logo {
-            font-family: var(--font-serif);
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--warm-primary);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 2rem;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+            line-height: 1;
         }
 
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a {
-            font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: var(--text-light);
-            position: relative;
-            padding: 0.3rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
         }
         .nav-links a:hover, .nav-links a.active { color: var(--warm-primary); }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--warm-primary);
-            transition: width 0.3s;
-        }
-        .nav-links a.active::after,
-        .nav-links a:hover::after { width: 100%; }
 
-        /* 所有 section 默认显示（不再需要隐藏） */
-        section {
-            padding: 6rem 5% 4rem;
-            min-height: 100vh;
-            display: block;
+        .hero-content {
+            margin-bottom: 5rem;
         }
 
-        h1, h2, h3 { color: var(--text-dark); margin-bottom: 1rem; }
-        .section-title {
-            font-family: var(--font-serif);
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            color: var(--warm-primary);
-        }
-
-        /* Home 专属样式 */
-        #home {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start; /* 改为从顶部开始，方便留言板自然排列 */            
-            #justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at top right, #fceadd 0%, transparent 40%);
-        }
-        
         .hero-content h1 {
-            font-family: var(--font-serif);
-            font-size: 3.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
             line-height: 1.2;
-            margin-bottom: 1.5rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            max-width: 900px;
         }
         
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-light);
             max-width: 600px;
-            margin: 0 auto 2.5rem;
+            font-weight: 300;
+        }
+
+        .app-intro {
+            border-top: 4px solid var(--warm-primary);
+            padding: 3rem 0;
+            margin-bottom: -1rem;
+        }
+
+        .app-intro-header {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-dark);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .article-content {
+            width: 100%;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+
+        .article-content p:first-of-type::first-letter {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            float: left;
+            line-height: 0.8;
+            padding-right: 0.5rem;
+            color: var(--warm-primary);
         }
 
         .btn {
             display: inline-block;
-            background: var(--warm-primary);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(217, 119, 87, 0.3);
-            border: none;
-            cursor: pointer;
+            background: transparent;
+            color: var(--text-dark);
+            padding: 1rem 2.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--text-dark);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            font-size: 0.85rem;
         }
         .btn:hover { 
-            transform: translateY(-2px); 
-            background: #c25e3d;
-            box-shadow: 0 6px 20px rgba(217, 119, 87, 0.4);
+            background: var(--text-dark);
+            color: var(--warm-bg);
         }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--warm-primary);
-            color: var(--warm-primary);
-            margin-left: 1rem;
-        }
-        .btn-outline:hover {
-            background: rgba(217, 119, 87, 0.1);
-        }
-
-        /* 留言板容器样式 */
-        .comments-section {
-            width: 100%;
-            max-width: 800px;
-            margin: 4rem auto 0;
-            text-align: left;
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow);
-        }
-        .comments-section h2 {
-            font-family: var(--font-serif);
-            color: var(--warm-primary);
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--warm-secondary);
-            padding-bottom: 0.5rem;
-        }
-        /* 留言板容器样式 */
 
         footer {
-            background: var(--text-dark);
-            color: var(--white);
-            padding: 3rem 5%;
-            text-align: center;
-            margin-top: 4rem;
+            padding: 3rem 0;
+            margin-top: 5rem;
+            border-top: 1px solid var(--text-light);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-light);
         }
-        .footer-links a { color: rgba(255,255,255,0.6); margin: 0 1rem; font-size: 0.9rem; }
-        .footer-links a:hover { color: var(--white); }
 
         .progress-bar {
             position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
+            top: 0; left: 0;
+            height: 2px;
             background: var(--warm-primary);
             width: 0%;
-            z-index: 999;
-            transition: width 0.3s ease;
+            z-index: 1001;
         }
 
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .nav-links { 
-                display: flex; 
-                gap: 1rem;
-                overflow-x: auto;
-                padding-bottom: 0.5rem;
-            }
-            .nav-links a { font-size: 0.85rem; }
+            nav { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .hero-content h1 { font-size: 3.5rem; }
+            footer { flex-direction: column; gap: 1rem; }
         }
     </style>
 </head>
 <body>
-
     <div class="progress-bar" id="progressBar"></div>
 
-    <nav>
-        <div class="logo">Warm Spirit</div>
-        <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="projects.html">Projects</a>
-            <a href="journal.html">Dev Journal</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="privacy.html">Privacy</a>
-        </div>
-    </nav>
-
-    <!-- 主页内容 -->
-    <section id="home">
-        <div class="hero-content">
-            <h1>Digital tools for<br>human moments.</h1>
-            <p class="hero-subtitle">
-                Hello, I'm a developer crafting apps that help you capture and cherish life's meaningful experiences.
-            </p>
-            <div>
-                <a href="projects.html" class="btn">View My Creations</a>
+    <div class="container">
+        <nav>
+            <div class="logo">Warm Spirit</div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="devjournal.html">Dev Journal</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy</a>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <footer>
-        <p>&copy; <span id="year"></span> Warm Spirit Digital Studio.</p>
-        <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.7;">Made with warmth and care.</p>
-        <div class="footer-links" style="margin-top: 1.5rem;">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
-            <a href="mailto:hello@warmspirit.com">Email Me</a>
-        </div>
-    </footer>
+        <section id="home">
+            <div class="hero-content">
+                <h1>Quiet software<br>for a louder hard-world.</h1>
+                <p class="hero-subtitle">
+                    Crafted by an independent developer dedicated to helping you embrace a calm, orderly life and capture its most beautiful moments.
+                </p>
+            </div>
+            
+            <div class="app-intro">
+                <div class="app-intro-header">Introducing: The Cocktail Memory Bar</div>
+                <div class="article-content">
+                    <p>My debut application is meticulously designed to help you preserve the vibe, flavor, and essence of your favorite drinks. It is a quiet space to document the moments that matter, far away from the noise of typical social networking.</p>
+                    <p>Your privacy is my absolute priority. The app operates on a strict "Local First" architecture—meaning it runs completely offline. There are no servers collecting your data.</p>
+                    <p>With zero external network requests or third-party tracking embedded in the software, every memory, photo, and tasting note you create is stored securely and entirely on your device.</p>
+                </div>
+            </div>
+
+            <a href="privacy.html" class="btn">Read Privacy Policy</a>
+        </section>
+
+        <footer>
+            <p>&copy; <span id="year"></span> Warm Spirit Digital Studio.</p>
+        </footer>
+    </div>
 
     <script>
-        // 动态年份
         document.getElementById('year').textContent = new Date().getFullYear();
-
-        // 滚动进度条
         window.addEventListener('scroll', function() {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
         });
-
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | Warm Spirit</title>
+    <title>Dev Journal | Warm Spirit</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,6 +38,9 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 5%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         nav {
@@ -68,70 +71,70 @@
         }
         .nav-links a:hover, .nav-links a.active { color: var(--warm-primary); }
 
-        .policy-content {
+        .journal-content {
+            flex: 1;
             max-width: 800px;
             margin-bottom: 5rem;
         }
 
-        .policy-content h1 {
+        .journal-content h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
+            font-size: 5rem;
             line-height: 1.1;
             font-weight: 400;
             color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
-
-        .last-updated {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 4rem;
-            font-style: italic;
-        }
-
-        .policy-content h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            color: var(--text-dark);
-            margin-top: 3rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(44, 62, 80, 0.2);
-            padding-bottom: 0.5rem;
-        }
-
-        .policy-content p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: var(--text-dark);
-            line-height: 1.7;
-        }
-
-        .policy-content ul {
-            list-style: none;
             margin-bottom: 2rem;
         }
 
-        .policy-content li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 1rem;
-            font-size: 1.05rem;
+        .journal-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            font-weight: 300;
+            margin-bottom: 3rem;
         }
 
-        .policy-content li::before {
-            content: "—";
-            position: absolute;
-            left: 0;
-            color: var(--warm-primary);
-            font-weight: bold;
+        .announcement-box {
+            border-top: 4px solid var(--warm-primary);
+            padding: 3rem 0 1rem 0;
+            margin-bottom: 1rem;
+        }
+
+        .announcement-box h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-dark);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .announcement-box p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+
+        .btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--text-dark);
+            padding: 1rem 2.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--text-dark);
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+        
+        .btn:hover { 
+            background: var(--text-dark);
+            color: var(--warm-bg);
         }
 
         footer {
             padding: 3rem 0;
-            margin-top: 4rem;
             border-top: 1px solid var(--text-light);
-            display: flex;
-            justify-content: space-between;
             font-size: 0.9rem;
             color: var(--text-light);
         }
@@ -147,7 +150,7 @@
 
         @media (max-width: 768px) {
             nav { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            .policy-content h1 { font-size: 3rem; }
+            .journal-content h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
@@ -159,42 +162,25 @@
             <div class="logo">Warm Spirit</div>
             <div class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="devjournal.html">Dev Journal</a>
+                <a href="journal.html" class="active">Dev Journal</a>
                 <a href="contact.html">Contact</a>
-                <a href="privacy.html" class="active">Privacy</a>
+                <a href="privacy.html">Privacy</a>
             </div>
         </nav>
 
-        <section class="policy-content">
-            <h1>Privacy Policy for The Cocktail Memory Bar</h1>
-            <p class="last-updated">Last Updated: December 19, 2025</p>
+        <section class="journal-content">
+            <h1>Dev Journal</h1>
+            <p class="journal-subtitle">
+                A quiet space for reflections, updates, and the ongoing story behind building independent, human-centric software.
+            </p>
+            
+            <div class="announcement-box">
+                <h2>Entries Coming Soon</h2>
+                <p>This section is currently being prepared. The first journal entries detailing the development process, design philosophy, and future updates for The Cocktail Memory Bar will be uploaded shortly.</p>
+                <p>Please check back later to read along.</p>
+            </div>
 
-            <h2>1. Our Philosophy</h2>
-            <p>The Cocktail Memory Bar ("we," "us," or "the App") was created to help you capture fleeting moments—the vibe, the flavor, and the feeling—without the need for perfect recall. We believe your memories belong to you alone. This policy outlines how we protect that privacy.</p>
-
-            <h2>2. Data Collection & Usage</h2>
-            <p>We operate on a strict "Local First" basis:</p>
-            <ul>
-                <li><strong>No Personal Data Collected:</strong> We do not collect your name, email, phone number, or location.</li>
-                <li><strong>Local Processing:</strong> All memories you create are stored locally on your device (in your device's standard file system). We do not have access to your data, and it is never uploaded to our servers.</li>
-                <li><strong>Photos & Camera:</strong> The App requests access to your Camera and Photo Library solely to allow you to capture or select images for your memory entries. These images are processed entirely on your device.</li>
-            </ul>
-
-            <h2>3. Third-Party Services</h2>
-            <ul>
-                <li><strong>No Tracking:</strong> We do not use third-party analytics (such as Google Analytics or Firebase) or advertising networks. We do not track your behavior inside the App.</li>
-                <li><strong>Apple iCloud:</strong> If you have iCloud Backup enabled on your device, your App data will be backed up to Apple's servers according to your personal iCloud settings. This is managed by Apple, not us.</li>
-            </ul>
-
-            <h2>4. Subscriptions & Payments</h2>
-            <p>All financial transactions are handled directly by the Apple App Store. We do not process or store your credit card information. We may check your active subscription status to unlock premium features (like "Connoisseur Pass"), but this check is anonymous.</p>
-
-            <h2>5. Data Retention</h2>
-            <p>All data remains on your device. You have full control over it and can delete it at any time.</p>
-
-            <h2>6. Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-            <p>Email: warm_spirit@outlook.com</p>
+            <a href="index.html" class="btn">Return Home</a>
         </section>
 
         <footer>
